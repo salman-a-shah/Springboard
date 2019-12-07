@@ -145,7 +145,6 @@ class ModelBuilder():
 		if verbose:
 			print("Building model...")
 		self.model = self.build_model()
-
 		if verbose:
 			self.model.summary()
 			print("Compiling...")
@@ -156,16 +155,27 @@ class ModelBuilder():
 							  epochs=self.h['num_epochs'],
 							  verbose=verbose,
 							  validation_data=(x_test, y_test))
-		
-		if verbose:
-			print("Training complete. Recording accuracy...")
-		self.accuracy = self.model.evaluate(x_test, y_test)[1]	# record the last validation accuracy
-		
-		if verbose:
-			print("Saving model summary...")
-		self.save_model_summary()
 
-
+	def run_algorithm(iteration=1, verbose=True):
+		if verbose:
+			print("Running algorithm for", iteration, "iterations.")
+		for i in range(iteration):
+			if verbose:
+				print("Iteration", i,)
+			self.train_model()
+			if verbose:
+				print("Training complete. Recording accuracy...")
+			self.accuracy = self.model.evaluate(x_test, y_test)[1]	# record the last validation accuracy
+			if verbose:
+				print("Saving results...")
+			self.save_model_summary():
+			self.save_error_plots()
+			self.save_results()
+			if verbose:
+				print("Serializing model...")
+			self.save_model_to_disk()
+			if verbose:
+				print("Iteration complete\n")
 
 	# show results of a trained model 
 	def display_results(self, n=10, img_size=10):
@@ -257,6 +267,12 @@ class ModelBuilder():
 		self.model.summary()
 		sys.stdout = orig_stdout
 		f.close()
+
+	def save_model_to_disk(self, directory='./results/')
+		model_json = self.model.to_json()
+		with open(directory + "model.json", "w") as json_file:
+			json_file.write(model_json)
+		model.save_weights(directory + "model.h5")
 
 
 

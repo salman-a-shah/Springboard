@@ -14,6 +14,7 @@ from keras.layers import Conv2D, UpSampling2D, Input, Add
 from keras.models import Model
 from keras.regularizers import l1_l2
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 from PIL import Image
 from numpy.random import randint
 import numpy as np
@@ -30,15 +31,18 @@ class ModelBuilder():
 			"num_residual_blocks" : 4,	# number of residual blocks to use. [2,5]
 			"num_conv_blocks" : 2, 		# number of conv blocks to use inside a residual block. [2,4]
 			"num_final_conv_blocks" : 2,
-			"num_epochs" : 100,			# train everything at 100 epochs for now
+			"num_epochs" : 1,			# train everything at 100 epochs for now
 			"batch_size" : 16,			# lower this number if ResourceExhaustion errors occur
 			"num_filters" : 64,			# [16,32,64,128]
 			"learning_rate" : 0.0001,	# parameter for adam optimizer. [0.0001, 0.001]
 			"beta_1" : 0.9,				# parameter for adam optimizer. ignore for now
 			"beta_2" : 0.999,			# parameter for adam optimizer. ignore for now
-			"optimizer" : keras.optimizers.Adam(lr=learning_rate, beta_1=beta_1, beta_2=beta_2, amsgrad=False),
-			'regularizer' : l1_l2(l1=h['l1_parameter'], l2=h['l2_parameter'])
 		}
+		self.h.update({"optimizer" : keras.optimizers.Adam(lr=self.h['learning_rate'], 
+												   beta_1=self.h['beta_1'], 
+												   beta_2=self.h['beta_2'], 
+												   amsgrad=False),
+			'regularizer' : l1_l2(l1=self.h['l1_parameter'], l2=self.h['l2_parameter'])})
 		self.model = None
 		self.hist = None
 		self.dataset = None
@@ -75,7 +79,7 @@ class ModelBuilder():
 		return Add()([conv_1x1, input_layer])
 
 	# final convolution blocks
-	def conv_block(input_layer, activation='relu', kernel_size=(3,3)):
+	def conv_block(self, input_layer, activation='relu', kernel_size=(3,3)):
 		layer = input_layer
 		for i in range(self.h['num_final_conv_blocks']):
 			layer = Conv2D(self.h['num_filters'],
@@ -96,7 +100,7 @@ class ModelBuilder():
 			layer = self.residual_block(layer)
 		layer = self.upsample(layer)
 		layer = self.conv_block(layer)
-		output_layer = self.Conv2D(3, (1,1), padding='same')(layer)
+		output_layer = Conv2D(3, (1,1), padding='same')(layer)
 		return Model(inputs=input_layer, outputs=output_layer)
 
 	# returns dataset in (x_train, y_train), (x_test, y_test) format
@@ -149,14 +153,14 @@ class ModelBuilder():
 			self.model.summary()
 			print("Compiling...")
 		self.model.compile(loss='mse', optimizer=self.h['optimizer'], metrics=['accuracy'])
-		self.hist = model.fit(x_train,
-							  y_train, 
-							  batch_size=self.h['batch_size'],
-							  epochs=self.h['num_epochs'],
-							  verbose=verbose,
-							  validation_data=(x_test, y_test))
+		self.hist = self.model.fit(x_train,
+								   y_train,
+								   batch_size=self.h['batch_size'],
+								   epochs=self.h['num_epochs'],
+								   verbose=verbose,
+								   validation_data=(x_test, y_test))
 
-	def run_algorithm(iteration=1, verbose=True):
+	def run_algorithm(self, iteration=1, verbose=True):
 		if verbose:
 			print("Running algorithm for", iteration, "iterations.")
 		for i in range(iteration):
@@ -168,7 +172,7 @@ class ModelBuilder():
 			self.accuracy = self.model.evaluate(x_test, y_test)[1]	# record the last validation accuracy
 			if verbose:
 				print("Saving results...")
-			self.save_model_summary():
+			self.save_model_summary()
 			self.save_error_plots()
 			self.save_results()
 			if verbose:
@@ -268,7 +272,7 @@ class ModelBuilder():
 		sys.stdout = orig_stdout
 		f.close()
 
-	def save_model_to_disk(self, directory='./results/')
+	def save_model_to_disk(self, directory='./results/'):
 		model_json = self.model.to_json()
 		with open(directory + "model.json", "w") as json_file:
 			json_file.write(model_json)

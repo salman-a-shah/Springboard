@@ -1,6 +1,15 @@
 import cv2
 import os
 
+"""
+This is a simple script written to find the smallest safest dimension
+to crop all images to. The result is a tuple representing the 
+smallest height found and the smallest width found. 
+
+The reason this is necessary is because the standardized dimensions
+for the dataset needs to be within the range of this tuple. 
+"""
+
 root_dir = os.getcwd()
 downloads_dir = root_dir + '\\downloads'
 

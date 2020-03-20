@@ -1,10 +1,9 @@
-"""
-This script resizes the downloaded images to
-half the size in each dimension.
-"""
-
 import cv2
 import os
+
+"""
+This script downscales all downloaded images to half the width and height.
+"""
 
 root_dir = os.getcwd()
 downloads_dir = root_dir + '\\standardized'

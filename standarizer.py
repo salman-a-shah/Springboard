@@ -1,7 +1,15 @@
-# standardizing all images to 600 x 600 because that's the smallest dimension we can safely crop
-
 import cv2
 import os
+
+"""
+After running find_smallest_image_dimensions.py, I've decided to standardize
+all images to 600x600 as this dimesion stays within the safe range
+
+This script converts all images to 600x600, which will be the test data. The 
+training data will be generated from this set by duplicating this set and
+downscaling each image on that set to 300x300
+"""
+# standardizing all images to 600 x 600 because that's the smallest dimension we can safely crop
 
 root_dir = os.getcwd()
 downloads_dir = root_dir + '\\downloads'

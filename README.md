@@ -13,7 +13,8 @@ The source for the deployed product is also open source. Click to see the [deplo
 - dataset: A dataset built using image scrapers and python image libraries
 - documents: Relevant documents for Springboard
 - notebooks: Jupyter notebooks used for documenting experiments and demonstrating prcoesses undertaken to build the model
-- scraper: 
+- scraper, resizer, standardizer: Helper functions used to build the dataset
+- 
 
 ## Introduction 
 A single image super resolution problem is a problem where one attempts to recover a higher quality version of a given image.

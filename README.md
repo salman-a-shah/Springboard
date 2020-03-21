@@ -9,7 +9,7 @@ The source for the deployed product is also open source. Click to see the [deplo
 
 ![alt text](https://i.ibb.co/HTPXt1q/example-prediction.png)
 
-## Project Structure
+### Project Structure
 - dataset: A dataset built using image scrapers and python image libraries
 - documents: Relevant documents for Springboard
 - notebooks: Jupyter notebooks used for documenting experiments and demonstrating prcoesses undertaken to build the model
@@ -21,7 +21,7 @@ A single image super resolution problem is a problem where one attempts to recov
 For example, given an image that is 400x300 pixels, the goal is to obtain an image that is 800x600 pixels (for 2x upscale) that maintains a quality that is equivalent to the given image, without making it appear pixelated or blurry.
 
 ## Inspiration
-This project was inspired by [this paper](https://arxiv.org/abs/1802.08797) and [this implemntation](https://github.com/idealo/image-super-resolution) of the paper's model.
+This project was inspired by [this paper](https://arxiv.org/abs/1802.08797) and [this implementation](https://github.com/idealo/image-super-resolution) of the paper's model.
 
 This project, however, yields decent results without the dense components of the neural network.
 
@@ -30,7 +30,7 @@ The dataset was built by scraping images from google images and standardizing th
 
 Details of the data collection process can be found in the [data wrangling notebook](https://github.com/salman-a-shah/Springboard/blob/master/notebooks/data_wrangling.ipynb).
 
-The raw data is available for download in this folder. **INCLUDE LINK HERE**
+The raw data is available for download [in this folder](https://drive.google.com/drive/folders/1ggEh_5B0rwm6NnrEHOPvIsTKgWJSOLbp?usp=sharing). 
 
 ## Model Architecture
 The architecture used in this project is a residual neural network (a neural network that utilizes skip connections). A diagram depicting the model architecture is given below.
@@ -41,3 +41,10 @@ The architecture used in this project is a residual neural network (a neural net
 Loss is computed by measuring pixel-to-pixel difference. Both mean squared error and mean absolute error were tested in this model. The referenced paper claims that mean absolute error is superior for this problem, but the difference was negligible in this case.
 
 There were two metrics that were considered for this problem, the first being pixel-to-pixel accuracy and second being peak signal-to-noise ratio (PSNR). An interesting observation was that the PSNR model appeared to produce a much sharper image (too sharp at times), while the accuracy model appeared to sometimes produce a slightly blurry image. Overall, the PSNR seemed to do better in most cases.
+
+Below are some comparisons between the input, accuracy model, PSNR model, and ground truth.
+
+![alt_text](https://i.imgur.com/dZolJNK.jpg)
+
+## More about the author
+Visit my webpage at www.thephilosophersdomain.com

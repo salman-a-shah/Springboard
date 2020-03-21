@@ -1,7 +1,7 @@
 # Image Super Resolution using a Residual Network
 SALMAN SHAH | SPRINGBOARD
 
-This repository contains the data and code used to complete my capstone project for Springboard—an intense Machine Learning Engineering course program. In this project, I built and put into production a residual neural network that increases the dimensions of an image 2x while maintaining good quality. 
+This repository contains the data, code, and process used to complete my capstone project for Springboard—an intense Machine Learning Engineering course program. In this project, I built and put into production a residual neural network that increases the dimensions of an image 2x while maintaining good quality. 
 
 Click to test the [deployed product](https://thephilosopher.pythonanywhere.com/).
 
@@ -12,9 +12,12 @@ The source for the deployed product is also open source. Click to see the [deplo
 ### Project Structure
 - dataset: A dataset built using image scrapers and python image libraries
 - documents: Relevant documents for Springboard
-- notebooks: Jupyter notebooks used for documenting experiments and demonstrating prcoesses undertaken to build the model
+- 1_data_wrangling: a notebook describing the data collection process of the project
+- 2_machine_learning_prototype: a notebook explaining the viability of neural networks to solve the image super resolution problem
+- 3_experimenting_with_PSNR_metric: a notebook experimenting with the PSNR metric
+- 4_evolution_algorithm: a notebook for automating the hyperparameter search process in google colab
+- 5_final_training_session: a notebook training the final model
 - scraper, resizer, standardizer: Helper functions used to build the dataset
-- 
 
 ## Introduction 
 A single image super resolution problem is a problem where one attempts to recover a higher quality version of a given image.

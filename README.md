@@ -7,7 +7,9 @@ Click to test the [deployed product](https://thephilosopher.pythonanywhere.com/)
 
 The source for the deployed product is also open source. Click to see the [deployment repository](https://github.com/salman-a-shah/image-supersizer).
 
-![alt text](https://i.ibb.co/HTPXt1q/example-prediction.png)
+<p align="center">
+  <img src="https://i.ibb.co/HTPXt1q/example-prediction.png">
+</p>
 
 ### Project Structure
 - dataset: A dataset built using image scrapers and python image libraries

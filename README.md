@@ -53,4 +53,4 @@ Below are some comparisons between the input, accuracy model, PSNR model, and gr
 ![alt_text](https://i.imgur.com/dZolJNK.jpg)
 
 ## More about the author
-Visit my webpage at www.thephilosophersdomain.com
+Visit my webpage at [salman-a-shah.github.io](https://salman-a-shah.github.io/).

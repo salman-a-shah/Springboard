@@ -15,10 +15,11 @@ The source for the deployed product is also open source. Click to see the [deplo
 - dataset: A dataset built using image scrapers and python image libraries
 - documents: Relevant documents for Springboard
 - 1_data_wrangling: a notebook describing the data collection process of the project
-- 2_machine_learning_prototype: a notebook explaining the viability of neural networks to solve the image super resolution problem
-- 3_experimenting_with_PSNR_metric: a notebook experimenting with the PSNR metric
-- 4_evolution_algorithm: a notebook for automating the hyperparameter search process in google colab
-- 5_final_training_session: a notebook training the final model
+- 2_prototype_using_convolutional_nn: a notebook explaining the viability of convolutional neural networks to solve the image super resolution problem
+- 3_prototype_using_residual_neural_network: a notebook expanding on the CNN by implementing residual networks
+- 4_experimenting_with_PSNR_metric: a notebook experimenting with the PSNR metric
+- 5_evolution_algorithm: a notebook for automating the hyperparameter search process in google colab
+- 6_final_training_session: a notebook training the final model
 - scraper, resizer, standardizer: Helper functions used to build the dataset
 
 ## Introduction 
